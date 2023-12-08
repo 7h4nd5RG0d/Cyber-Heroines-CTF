@@ -30,7 +30,17 @@ So copying the data in VSCode and using "Ctrl+Shift+L" to select and delete the 
 
 ### Stephanie Wehner(300)
 #### Input file: https://drive.google.com/file/d/1wFihQD4zdespZx1Bjw5fV_zANoNrJg9k/view?usp=drive_link
-Approach: 
+Approach: Using this cheatsheet as referance we can solve the challenge using volatiltiy : https://blog.onfvp.com/post/volatility-cheatsheet/  
+1)./volatility -f ../a.vmem imageinfo (gives us the profile name)  
+2)./volatility -f ../a.vmem --profile=Win8SP0x64 pslist(gives us the processes running at the time when image was taken)  
+3)mkdir dump( for storing dump from pid=2452,i.e, notepad.exe)  
+4)./volatility -f ../a.vmem --profile=Win8SP0x64 memdump --pid=2452 --dump-dir=dump  
+5)strings -e 2452.dmp |uniq | less (gives us a github link on scrolling down which gives us the flag)  
+
+#### Flag: chctf{2023!@mu5f@!5y_1009}
+
+
+
 
 
  

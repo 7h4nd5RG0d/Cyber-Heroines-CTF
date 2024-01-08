@@ -31,13 +31,24 @@ So copying the data in VSCode and using "Ctrl+Shift+L" to select and delete the 
 ### Stephanie Wehner(300)
 #### Input file: https://drive.google.com/file/d/1wFihQD4zdespZx1Bjw5fV_zANoNrJg9k/view?usp=drive_link
 Approach: Using this cheatsheet as referance we can solve the challenge using volatiltiy : https://blog.onfvp.com/post/volatility-cheatsheet/  
-1)./volatility -f ../a.vmem imageinfo (gives us the profile name)  
-2)./volatility -f ../a.vmem --profile=Win8SP0x64 pslist(gives us the processes running at the time when image was taken)  
-3)mkdir dump( for storing dump from pid=2452,i.e, notepad.exe)  
-4)./volatility -f ../a.vmem --profile=Win8SP0x64 memdump --pid=2452 --dump-dir=dump  
-5)strings -e 2452.dmp |uniq | less (gives us a github link on scrolling down which gives us the flag)  
+1)Checking the clipboard using: "./volatility -f ../a.vmem --profile=Win8SP1x64 clipboard" we get a github repo in data  
+2)Going to the repo we see a SECRET repo which contains the flag.  
+![image](https://github.com/7h4nd5RG0d/Cyber-Heroines-CTF/assets/128285431/4155a5f9-052b-4e1d-842e-c1d0034ce720)
 
-#### Flag: chctf{2023!@mu5f@!5y_1009}
+#### Flag: chctf{2023!@mu5f@!5y_1009}  
+
+### Marian Croak(300)
+#### Input file:https://drive.google.com/file/d/1htCVEWDKhAVzvZ1vMs6wzXWPcMir5ebB/view?usp=sharing
+Approach: The description hints towards deleted files present in the system as well as VOIP calls in pcap files.  
+Using this we open the disk image in autopsy and under deleted files we find f0017074.pcap which we can export.  
+![image](https://github.com/7h4nd5RG0d/Cyber-Heroines-CTF/assets/128285431/81f4eef9-a6c8-4d36-982c-e6e9e469c157)  
+Opening it in wireshark and then Telephony->Voip calls we listen to the last transmission which gives us the flag. 
+![image](https://github.com/7h4nd5RG0d/Cyber-Heroines-CTF/assets/128285431/e2b346ec-d9cc-48d5-884e-50c702bcb49c)
+
+#### Flag:chctf{d3v3l0p3d_vo1c3_0v3r_1p}
+
+
+
 
 
 
